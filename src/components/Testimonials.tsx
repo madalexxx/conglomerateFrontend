@@ -7,7 +7,7 @@ const testimonials = [
     role: "CTO at TechCorp",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
     content:
-      "This platform transformed how we integrate AI into our products. The API is incredibly easy to use and the performance is outstanding.",
+      "The reliability and encryption standards of this platform are unmatched. We've eliminated security concerns about our communications infrastructure.",
     rating: 5,
   },
   {
@@ -15,7 +15,7 @@ const testimonials = [
     role: "Founder at StartupXYZ",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
     content:
-      "We've tried several AI platforms, but this one stands out for its reliability and developer experience. Highly recommended!",
+      "We evaluated dozens of communications platforms. This one's decentralized architecture and uptime SLA gave us exactly what we needed.",
     rating: 5,
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     role: "Product Manager at InnovateLabs",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
     content:
-      "The support team is fantastic and the documentation is comprehensive. We were able to integrate AI features in days, not weeks.",
+      "Integration was seamless and the technical support is exceptional. We went from planning to production in under two weeks.",
     rating: 5,
   },
 ];

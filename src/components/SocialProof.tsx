@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Live User Counter
 export function LiveUserCount() {
-  const [count, setCount] = useState(1247);
+  const [count, setCount] = useState(typeof window !== 'undefined' ? 1247 : 1247);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const interval = setInterval(() => {
       setCount((prev) => prev + Math.floor(Math.random() * 3));
     }, 3000);
@@ -79,6 +81,8 @@ export function RecentActivity() {
   ];
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const interval = setInterval(() => {
       const newActivity: Activity = {
         id: Date.now().toString(),
@@ -183,6 +187,8 @@ function CountUpNumber({
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const duration = 2000;
     const steps = 60;
     const increment = end / steps;

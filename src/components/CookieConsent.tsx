@@ -13,6 +13,8 @@ export function CookieConsent() {
   });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const consent = localStorage.getItem("cookie-consent");
     if (!consent) {
       // Show banner after a short delay

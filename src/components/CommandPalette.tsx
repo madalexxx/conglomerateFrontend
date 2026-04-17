@@ -12,9 +12,9 @@ interface CommandItem {
 }
 
 export function CommandPalette() {
-  const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [open, setOpen] = useState(typeof window !== 'undefined' ? false : false);
+  const [search, setSearch] = useState(typeof window !== 'undefined' ? "" : "");
+  const [selectedIndex, setSelectedIndex] = useState(typeof window !== 'undefined' ? 0 : 0);
 
   const commands: CommandItem[] = [
     {
@@ -31,6 +31,14 @@ export function CommandPalette() {
       description: "View component library",
       icon: FileText,
       action: () => window.location.href = withBase("/components"),
+      category: "Navigation",
+    },
+    {
+      id: "docs",
+      title: "Documentation",
+      description: "Read the documentation",
+      icon: FileText,
+      action: () => window.location.href = withBase("/docs"),
       category: "Navigation",
     },
     {
@@ -141,6 +149,8 @@ export function CommandPalette() {
   );
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);

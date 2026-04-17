@@ -3,7 +3,7 @@ import { Check, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function PricingCalculator() {
-  const [apiCalls, setApiCalls] = useState(100000);
+  const [apiCalls, setApiCalls] = useState(typeof window !== 'undefined' ? 100000 : 100000);
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
 
   // Pricing tiers (price per 1K API calls)
@@ -140,7 +140,7 @@ export function PricingCalculator() {
             </div>
             <div className="flex items-center gap-2 text-sm">
               <Check className="h-4 w-4 text-green-600 dark:text-green-400 flex-shrink-0" />
-              <span>Custom model fine-tuning</span>
+              <span>Custom protocol integration</span>
             </div>
           </div>
 
