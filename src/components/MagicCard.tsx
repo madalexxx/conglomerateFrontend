@@ -1,6 +1,16 @@
-import { ReactNode, useRef, useState, MouseEvent } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform
+} from "framer-motion";
 import { cn } from "@/lib/utils";
+import {
+  useRef,
+  useState,
+  type MouseEvent,
+  type ReactNode
+} from "react";
 
 interface MagicCardProps {
   children: ReactNode;

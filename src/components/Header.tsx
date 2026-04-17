@@ -5,7 +5,7 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { withBase } from "@/lib/utils";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(typeof window !== 'undefined' ? false : false);
 
   const navItems = [
     { label: "Features", href: withBase("/#features") },
@@ -25,7 +25,7 @@ export function Header() {
             <Sparkles className="h-5 w-5 text-white" />
           </div>
           <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-            GenAI
+            Paradigm Solutions
           </span>
         </a>
 

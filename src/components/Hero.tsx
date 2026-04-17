@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Brain } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Radio } from "lucide-react";
 
 export function Hero() {
   return (
@@ -20,10 +20,13 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full border bg-background/60 backdrop-blur-sm px-4 py-1.5 text-sm">
+            <a
+              href="/docs/protocol/hermes-thoth-secure-relay-system-v472/implementation-specification/00-outline"
+              className="inline-flex items-center gap-2 rounded-full border bg-background/60 backdrop-blur-sm px-4 py-1.5 text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
               <Sparkles className="h-4 w-4 text-purple-500" />
-              <span className="text-muted-foreground">Powered by AI</span>
-            </div>
+              <span className="text-muted-foreground">Powered by HERMES-THOTH</span>
+            </a>
           </motion.div>
 
           {/* Main Heading */}
@@ -35,7 +38,7 @@ export function Hero() {
           >
             Build the Future with{" "}
             <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent animate-gradient">
-              GenAI
+              Paradigm Solutions
             </span>
           </motion.h1>
 
@@ -46,9 +49,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl"
           >
-            Harness the power of artificial intelligence to transform your ideas
-            into reality. Fast, secure, and scalable AI solutions for modern
-            businesses.
+            Enterprise communications infrastructure built for reliability and scale.
+            Secure, decentralized, and designed for seamless global connectivity.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -83,10 +85,10 @@ export function Hero() {
             </div>
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-1 text-2xl md:text-3xl font-bold">
-                <Brain className="h-6 w-6 text-purple-500" />
-                <span>10M+</span>
+                <Radio className="h-6 w-6 text-purple-500" />
+                <span>10B+</span>
               </div>
-              <p className="text-sm text-muted-foreground">AI Requests</p>
+              <p className="text-sm text-muted-foreground">Messages/Day</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-1 text-2xl md:text-3xl font-bold">

@@ -39,9 +39,9 @@ export function AdvancedShowcase() {
 
   const comparisonFeatures = [
     { name: "API Access", free: true, pro: true, enterprise: true },
-    { name: "Advanced Models", free: false, pro: true, enterprise: true },
+    { name: "Enhanced Encryption", free: false, pro: true, enterprise: true },
     { name: "Priority Support", free: false, pro: true, enterprise: true },
-    { name: "Custom Training", free: false, pro: false, enterprise: true },
+    { name: "Custom Protocols", free: false, pro: false, enterprise: true },
     { name: "On-Premise Deploy", free: false, pro: false, enterprise: true },
     { name: "SLA Guarantee", free: false, pro: true, enterprise: true },
   ];
@@ -66,7 +66,7 @@ export function AdvancedShowcase() {
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500">
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold">AI Powered</h3>
+              <h3 className="text-2xl font-bold">Secure Communications</h3>
             </div>
             <p className="text-muted-foreground mb-4">
               Hover over this card to see the magic! Watch as the spotlight follows
@@ -130,10 +130,10 @@ export function AdvancedShowcase() {
         </p>
         <BentoGrid>
           <BentoCard
-            name="AI Models"
+            name="Network Infrastructure"
             className="md:col-span-2"
-            Icon={Brain}
-            description="Access cutting-edge AI models with simple API calls"
+            Icon={Audio}
+            description="Decentralized, secure messaging with global reach"
             href="#"
             cta="Learn more"
             background={
@@ -173,10 +173,10 @@ export function AdvancedShowcase() {
 
 <BentoGrid>
   <BentoCard
-    name="AI Models"
+    name="Network Infrastructure"
     className="md:col-span-2"
-    Icon={Brain}
-    description="Access cutting-edge AI models"
+    Icon={Radio}
+    description="Decentralized, secure messaging with global reach"
     href="#"
     cta="Learn more"
   />
@@ -255,11 +255,11 @@ const logos = [
         <div className="p-8 rounded-2xl border bg-card space-y-4">
           <h3 className="text-4xl font-bold">
             Build with{" "}
-            <GradientText>GenAI</GradientText>
+            <GradientText>Paradigm Solutions</GradientText>
           </h3>
           <h3 className="text-4xl font-bold">
             Powered by{" "}
-            <GradientText animate>Artificial Intelligence</GradientText>
+            <GradientText animate>Decentralized Networks</GradientText>
           </h3>
           <h3 className="text-4xl font-bold">
             <GradientText from="from-blue-600" to="to-cyan-600">
@@ -528,7 +528,7 @@ const logos = [
 
 const features = [
   { name: "API Access", free: true, pro: true, enterprise: true },
-  { name: "Advanced Models", free: false, pro: true, enterprise: true },
+  { name: "Enhanced Encryption", free: false, pro: true, enterprise: true },
 ];
 
 <FeatureComparison features={features} />`}

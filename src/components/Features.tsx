@@ -1,54 +1,54 @@
 import { motion } from "framer-motion";
 import {
-  Brain,
+  Radio,
   Zap,
   Shield,
   Code,
   Globe,
-  Sparkles,
+  Lock,
 } from "lucide-react";
 
 const features = [
   {
-    icon: Brain,
-    title: "Advanced AI Models",
+    icon: Radio,
+    title: "Decentralized Messaging",
     description:
-      "Access state-of-the-art language models and neural networks for your applications.",
+      "Distributed network architecture ensures your communications bypass traditional infrastructure limitations.",
     gradient: "from-purple-500 to-pink-500",
   },
   {
     icon: Zap,
-    title: "Lightning Fast",
+    title: "Ultra-Low Latency",
     description:
-      "Optimized infrastructure ensures your AI queries are processed in milliseconds.",
+      "Sub-millisecond message routing optimized for time-critical communications worldwide.",
     gradient: "from-yellow-500 to-orange-500",
   },
   {
-    icon: Shield,
-    title: "Enterprise Security",
+    icon: Lock,
+    title: "Military-Grade Encryption",
     description:
-      "Bank-level encryption and compliance with SOC 2, GDPR, and HIPAA standards.",
+      "End-to-end encryption with zero-knowledge architecture and quantum-resistant algorithms.",
     gradient: "from-green-500 to-emerald-500",
   },
   {
     icon: Code,
-    title: "Developer First",
+    title: "Universal Integration",
     description:
-      "Clean APIs, comprehensive docs, and SDKs in your favorite programming languages.",
+      "Seamless APIs and webhooks compatible with any platform, protocol, or legacy system.",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
     icon: Globe,
-    title: "Global Scale",
+    title: "Global Network",
     description:
-      "Deploy worldwide with edge locations across 6 continents for minimal latency.",
+      "Mesh network spanning multiple continents with automatic failover and redundancy.",
     gradient: "from-indigo-500 to-purple-500",
   },
   {
-    icon: Sparkles,
-    title: "Auto-Optimization",
+    icon: Shield,
+    title: "Enterprise Reliability",
     description:
-      "Smart caching and model selection automatically optimize for cost and performance.",
+      "99.99% uptime SLA with dedicated infrastructure and 24/7 operations monitoring.",
     gradient: "from-pink-500 to-rose-500",
   },
 ];
@@ -82,7 +82,7 @@ export function Features() {
           >
             Everything you need to{" "}
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-              build with AI
+              connect securely
             </span>
           </motion.h2>
           <motion.p
@@ -92,7 +92,7 @@ export function Features() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Powerful features designed to help you ship AI-powered products faster
+            Powerful features designed to help you build secure, reliable communications infrastructure
           </motion.p>
         </div>
 

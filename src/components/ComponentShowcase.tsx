@@ -115,12 +115,12 @@ export function ComponentShowcase() {
             <CardHeader>
               <CardTitle>API Integration</CardTitle>
               <CardDescription>
-                Connect your AI models seamlessly
+                Connect your communications infrastructure seamlessly
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Our REST API makes it easy to integrate powerful AI capabilities
+                Our REST API makes it easy to integrate secure messaging capabilities
                 into your applications with just a few lines of code.
               </p>
             </CardContent>
@@ -355,7 +355,7 @@ export function ComponentShowcase() {
             gradient="from-blue-500 to-cyan-500"
           />
           <StatCard
-            title="AI Requests"
+            title="Messages Sent"
             value="1.2M"
             change="+45.1% from yesterday"
             changeType="positive"
@@ -391,7 +391,7 @@ import { Users } from "lucide-react";
             items={[
               {
                 title: "Product Launch",
-                description: "Released version 1.0 of our AI platform",
+                description: "Released version 1.0 of our communications platform",
                 date: "Jan 2025",
                 icon: Rocket,
               },
@@ -409,7 +409,7 @@ import { Users } from "lucide-react";
               },
               {
                 title: "Company Founded",
-                description: "Started the journey to democratize AI",
+                description: "Started the journey to secure communications",
                 date: "Jun 2024",
                 icon: CheckCircle,
               },

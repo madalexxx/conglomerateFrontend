@@ -1,0 +1,446 @@
+---
+import { scanDocs } from '@/lib/doc-scanner';
+import type { DocNode } from '@/lib/doc-scanner';
+import DocsLayout from '@/layouts/docs.astro';
+import { withBase } from '@/lib/utils';
+
+const { docs, tree } = await scanDocs();
+
+function findFirstDocSlug(node: DocNode, parentSlug: string): string | null {
+  const currentSlug = parentSlug ? `${parentSlug}/${node.slug}` : node.slug;
+
+  if (!node.isDirectory && node.file) {
+    return currentSlug;
+  }
+
+  if (!node.children) return null;
+
+  for (const child of node.children) {
+    const found = findFirstDocSlug(child, currentSlug);
+    if (found) return found;
+  }
+
+  return null;
+}
+
+function getFolderItems(folder: DocNode): { label: string; slug: string; isDirectory: boolean }[] {
+  const baseSlug = folder.slug;
+  const children = folder.children ?? [];
+
+  return children
+    .map(child => {
+      const linkSlug = findFirstDocSlug(child, baseSlug);
+      if (!linkSlug) return null;
+
+      const label = child.isDirectory
+        ? child.name
+        : child.file?.title ?? child.name;
+
+      return {
+        label,
+        slug: linkSlug,
+        isDirectory: child.isDirectory,
+      };
+    })
+    .filter(Boolean) as { label: string; slug: string; isDirectory: boolean }[];
+}
+---
+
+<DocsLayout title="Archive Index" tree={tree} hideSidebar={true}>
+  <div class="archive-index">
+    {/* Header */}
+    <div class="index-header">
+      <div class="classified-stamp">CLASSIFIED // CRIMSON</div>
+      <p class="index-description">
+        Comprehensive intelligence archives, operational protocols, and classified documentation maintained by CANOPY Consortium.
+      </p>
+    </div>
+
+    {/* Quick links */}
+    <div class="category-grid">
+      {tree.map(folder => {
+        const count = docs.filter(d => d.slug.startsWith(folder.slug + '/') || d.slug === folder.slug).length;
+
+        return (
+          <a
+            href={withBase(`/docs/${folder.slug}`)}
+            class="category-card"
+          >
+            <div class="category-card-inner">
+              <div class="category-info">
+                <div class="category-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="category-name">
+                    {folder.name}
+                  </h3>
+                  <p class="category-count">
+                    {count} {count === 1 ? 'file' : 'files'}
+                  </p>
+                </div>
+              </div>
+              <div class="category-arrow">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    {/* All documents listing */}
+    <div class="documents-listing">
+      {tree.map(folder => {
+        const folderItems = getFolderItems(folder);
+
+        if (folderItems.length === 0) return null;
+
+        return (
+          <section class="folder-section">
+            <h2 class="folder-title">
+              {folder.name}
+            </h2>
+            <div class="document-list">
+              {folderItems.map(item => (
+                <a
+                  href={withBase(`/docs/${item.slug}`)}
+                  class="document-item"
+                >
+                  <div class="document-item-inner">
+                    <div class="document-icon">
+                      {item.isDirectory ? (
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                        </svg>
+                      ) : (
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      )}
+                    </div>
+                    <div class="document-info">
+                      <h3 class="document-title">
+                        {item.label}
+                      </h3>
+                      {item.isDirectory && (
+                        <p class="document-type">
+                          DIRECTORY
+                        </p>
+                      )}
+                    </div>
+                    <svg class="document-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </div>
+
+  <style is:global>
+    .archive-index {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .index-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid;
+      @apply border-slate-300;
+    }
+
+    .dark .index-header {
+      @apply border-slate-700;
+    }
+
+    .classified-stamp {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 0.5rem 1rem;
+      border: 2px solid;
+      border-radius: 0.25rem;
+      margin-bottom: 1.5rem;
+      @apply text-red-600 border-red-600;
+    }
+
+    .dark .classified-stamp {
+      @apply text-red-500 border-red-500;
+    }
+
+    .index-description {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      max-width: 48rem;
+      @apply text-slate-700;
+    }
+
+    .dark .index-description {
+      @apply text-slate-300;
+    }
+
+    /* Category Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (min-width: 768px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .category-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .category-card {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid;
+      transition: all 0.2s;
+      @apply bg-slate-100 border-slate-300;
+    }
+
+    .dark .category-card {
+       @apply bg-slate-900 border-slate-700;
+    }
+
+    .category-card:hover {
+      @apply border-red-600 bg-slate-200;
+    }
+
+    .dark .category-card:hover {
+       @apply border-red-500 bg-slate-800;
+    }
+
+    .category-card-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .category-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .category-icon {
+      width: 2rem;
+      height: 2rem;
+      flex-shrink: 0;
+      @apply text-slate-600;
+    }
+
+    .dark .category-icon {
+      @apply text-slate-400;
+    }
+
+    .category-card:hover .category-icon {
+      @apply text-red-600;
+    }
+
+    .dark .category-card:hover .category-icon {
+      @apply text-red-500;
+    }
+
+    .category-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+      @apply text-slate-800;
+    }
+
+    .dark .category-name {
+      @apply text-slate-200;
+    }
+
+    .category-card:hover .category-name {
+      @apply text-red-600;
+    }
+
+    .dark .category-card:hover .category-name {
+      @apply text-red-500;
+    }
+
+    .category-count {
+      font-size: 0.75rem;
+      @apply text-slate-600;
+    }
+
+    .dark .category-count {
+      @apply text-slate-400;
+    }
+
+    .category-arrow {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+      @apply text-red-600;
+    }
+
+    .dark .category-arrow {
+      @apply text-red-500;
+    }
+
+    .category-card:hover .category-arrow {
+      opacity: 1;
+    }
+
+    /* Documents Listing */
+    .documents-listing {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .folder-section {
+      /* No additional styles needed */
+    }
+
+    .folder-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      @apply text-slate-900;
+    }
+
+    .dark .folder-title {
+      @apply text-slate-300;
+    }
+
+    .document-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .document-item {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid;
+      transition: all 0.2s;
+      @apply bg-slate-100 border-slate-300;
+    }
+
+    .dark .document-item {
+      @apply bg-slate-900 border-slate-700;
+    }
+
+    .document-item:hover {
+      @apply border-red-600 bg-slate-200;
+    }
+
+    .dark .document-item:hover {
+      @apply border-red-500 bg-slate-800;
+    }
+
+    .document-item-inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .document-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      flex-shrink: 0;
+      @apply text-slate-600;
+    }
+
+    .dark .document-icon {
+      @apply text-slate-400;
+    }
+
+    .document-item:hover .document-icon {
+      @apply text-red-600;
+    }
+
+    .dark .document-item:hover .document-icon {
+      @apply text-red-500;
+    }
+
+    .document-info {
+      flex: 1;
+    }
+
+    .document-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.125rem;
+      @apply text-slate-800;
+    }
+
+    .dark .document-title {
+      @apply text-slate-200;
+    }
+
+    .document-item:hover .document-title {
+      @apply text-red-600;
+    }
+
+    .dark .document-item:hover .document-title {
+      @apply text-red-500;
+    }
+
+    .document-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      @apply text-slate-500;
+    }
+
+    .dark .document-type {
+      @apply text-slate-400;
+    }
+
+    .document-arrow {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      @apply text-slate-400;
+    }
+
+    .dark .document-arrow {
+      @apply text-slate-600;
+    }
+
+    .document-item:hover .document-arrow {
+      @apply text-red-600;
+    }
+
+    .dark .document-item:hover .document-arrow {
+      @apply text-red-500;
+    }
+  </style>
+</DocsLayout>

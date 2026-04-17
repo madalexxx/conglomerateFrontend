@@ -10,16 +10,16 @@ interface Message {
 }
 
 export function ChatInterface() {
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<Message[]>(typeof window !== 'undefined' ? [
     {
       id: "1",
       role: "assistant",
-      content: "Hello! I'm your AI assistant. How can I help you today?",
+      content: "Hello! Message encrypted and ready for secure transmission.",
       timestamp: new Date(),
     },
-  ]);
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  ] : []);
+  const [input, setInput] = useState(typeof window !== 'undefined' ? "" : "");
+  const [isTyping, setIsTyping] = useState(typeof window !== 'undefined' ? false : false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -27,6 +27,8 @@ export function ChatInterface() {
   };
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     scrollToBottom();
   }, [messages, isTyping]);
 
@@ -44,14 +46,14 @@ export function ChatInterface() {
     setInput("");
     setIsTyping(true);
 
-    // Simulate AI response
+    // Simulate message response
     setTimeout(() => {
       const responses = [
-        "That's a great question! Let me help you with that.",
-        "I understand what you're asking. Here's what I think...",
-        "Based on your question, I'd suggest looking into our documentation for more details.",
-        "That's an interesting point! Our AI models are designed to handle exactly this type of scenario.",
-        "I can definitely help with that. Let me break it down for you.",
+        "Message received and encrypted with military-grade security.",
+        "Your communication has been securely transmitted through our decentralized network.",
+        "Message delivered with end-to-end encryption. No third parties can intercept this.",
+        "Secure transmission complete. Your data remains private and encrypted.",
+        "Message encrypted and relayed through our distributed infrastructure.",
       ];
 
       const assistantMessage: Message = {
@@ -81,8 +83,8 @@ export function ChatInterface() {
           <Bot className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h3 className="font-semibold text-sm">AI Assistant</h3>
-          <p className="text-xs text-muted-foreground">Always here to help</p>
+          <h3 className="font-semibold text-sm">Secure Messaging</h3>
+          <p className="text-xs text-muted-foreground">End-to-end encrypted</p>
         </div>
         <div className="ml-auto">
           <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium">
@@ -186,7 +188,7 @@ export function ChatInterface() {
         </div>
         <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
           <Sparkles className="h-3 w-3" />
-          Powered by GenAI • Press Enter to send
+          Powered by Paradigm Solutions • Press Enter to send
         </p>
       </div>
     </div>

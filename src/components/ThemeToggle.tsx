@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(typeof window !== 'undefined' ? "light" : "light");
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     // Check localStorage and system preference on mount
     const stored = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

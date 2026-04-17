@@ -1,0 +1,162 @@
+---
+import MainLayout from './main.astro';
+import DocsSidebar from '@/components/DocsSidebar';
+import type { DocNode } from '@/lib/doc-scanner';
+import { withBase } from '@/lib/utils';
+
+interface Props {
+  title?: string;
+  currentSlug?: string;
+  tree?: DocNode[];
+}
+
+const { title = 'Documentation', currentSlug = '', tree = [] } = Astro.props;
+---
+
+<MainLayout>
+  <div class="min-h-screen bg-background">
+    <div class="flex">
+      {/* Mobile sidebar toggle */}
+      <input type="checkbox" id="sidebar-toggle" class="peer hidden" />
+
+      {/* Sidebar */}
+      <aside class="fixed left-0 top-16 bottom-0 w-64 bg-card border-r border-border overflow-y-auto max-lg:fixed max-lg:inset-0 max-lg:top-16 max-lg:w-64 max-lg:transform max-lg:-translate-x-full max-lg:transition-transform max-lg:peer-checked:translate-x-0 z-40">
+        <nav class="p-6">
+          <DocsSidebar
+            client:load
+            tree={tree}
+            currentSlug={currentSlug}
+          />
+        </nav>
+      </aside>
+
+      {/* Mobile menu button */}
+      <label for="sidebar-toggle" class="fixed left-4 top-20 z-50 lg:hidden cursor-pointer">
+        <button class="p-2 hover:bg-card rounded-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </label>
+
+      {/* Main content */}
+      <main class="flex-1 lg:ml-64 min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 lg:px-8 py-8 lg:py-12">
+          {/* Breadcrumb */}
+          <div class="mb-8 text-sm text-muted-foreground">
+            <a href={withBase('/docs')} class="hover:text-foreground transition-colors">Documentation</a>
+            {currentSlug && (
+              <>
+                <span class="mx-2">/</span>
+                <span>{title}</span>
+              </>
+            )}
+          </div>
+
+          {/* Page title */}
+          <h1 class="text-4xl font-bold mb-8 text-foreground">{title}</h1>
+
+          {/* Content */}
+          <div class="text-foreground">
+            <slot />
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <style is:global>
+    /* Prose styling for markdown content */
+    .prose {
+      @apply leading-relaxed;
+    }
+
+    .prose h1 {
+      @apply text-3xl font-bold mt-8 mb-4 text-foreground;
+    }
+
+    .prose h2 {
+      @apply text-2xl font-bold mt-8 mb-4 text-foreground;
+    }
+
+    .prose h3 {
+      @apply text-xl font-bold mt-6 mb-3 text-foreground;
+    }
+
+    .prose h4,
+    .prose h5,
+    .prose h6 {
+      @apply font-bold mt-4 mb-2 text-foreground;
+    }
+
+    .prose p {
+      @apply my-4 text-foreground;
+    }
+
+    .prose a {
+      @apply text-primary hover:underline;
+    }
+
+    .prose code {
+      @apply bg-muted px-2 py-1 rounded text-sm font-mono;
+    }
+
+    .prose pre {
+      @apply bg-muted p-4 rounded-lg overflow-x-auto my-4;
+    }
+
+    .prose pre code {
+      @apply bg-transparent px-0 py-0;
+    }
+
+    .prose ul,
+    .prose ol {
+      @apply my-4 ml-6;
+    }
+
+    .prose li {
+      @apply my-2;
+    }
+
+    .prose blockquote {
+      @apply border-l-4 border-primary pl-4 my-4 italic text-muted-foreground;
+    }
+
+    .prose table {
+      @apply w-full border-collapse my-4;
+    }
+
+    .prose th,
+    .prose td {
+      @apply border border-border px-4 py-2 text-left;
+    }
+
+    .prose th {
+      @apply bg-muted font-bold;
+    }
+
+    .prose img {
+      @apply max-w-full h-auto my-4 rounded-lg;
+    }
+
+    .prose hr {
+      @apply my-8 border-border;
+    }
+
+    .dark .prose {
+      @apply text-foreground;
+    }
+
+    .dark .prose a {
+      @apply text-primary;
+    }
+
+    .dark .prose code {
+      @apply bg-muted/50;
+    }
+
+    .dark .prose pre {
+      @apply bg-muted/30;
+    }
+  </style>
+</MainLayout>

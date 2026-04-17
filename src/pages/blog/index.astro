@@ -4,8 +4,8 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 const blogPosts = [
 	{
-		title: "Getting Started with AI: A Beginner's Guide",
-		excerpt: "Learn the fundamentals of artificial intelligence and how to start building AI-powered applications today.",
+		title: "Getting Started with Secure Communications: A Beginner's Guide",
+		excerpt: "Learn the fundamentals of encrypted messaging and how to start building secure communications infrastructure today.",
 		date: "2025-01-15",
 		readTime: "5 min read",
 		category: "Tutorial",
@@ -13,8 +13,8 @@ const blogPosts = [
 		image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop"
 	},
 	{
-		title: "10 AI Use Cases Transforming Industries",
-		excerpt: "Discover how artificial intelligence is revolutionizing healthcare, finance, retail, and more.",
+		title: "10 Use Cases for Encrypted Communications in Enterprise",
+		excerpt: "Discover how secure messaging infrastructure is transforming healthcare, finance, retail, and more.",
 		date: "2025-01-10",
 		readTime: "7 min read",
 		category: "Industry",
@@ -22,8 +22,8 @@ const blogPosts = [
 		image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop"
 	},
 	{
-		title: "Building Scalable AI Applications",
-		excerpt: "Best practices and architectural patterns for building production-ready AI systems at scale.",
+		title: "Building Scalable Communications Infrastructure",
+		excerpt: "Best practices and architectural patterns for building production-ready messaging systems at scale.",
 		date: "2025-01-05",
 		readTime: "8 min read",
 		category: "Engineering",
@@ -31,8 +31,8 @@ const blogPosts = [
 		image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop"
 	},
 	{
-		title: "The Future of Large Language Models",
-		excerpt: "Exploring the latest advances in LLMs and what they mean for the future of AI development.",
+		title: "The Future of Quantum-Resistant Encryption",
+		excerpt: "Exploring the latest advances in post-quantum cryptography and what they mean for the future of secure communications.",
 		date: "2024-12-28",
 		readTime: "6 min read",
 		category: "Research",
@@ -40,8 +40,8 @@ const blogPosts = [
 		image: "https://images.unsplash.com/photo-1676573409371-f77e2b8f3d6e?w=800&h=400&fit=crop"
 	},
 	{
-		title: "AI Security Best Practices",
-		excerpt: "Essential security considerations when building and deploying AI-powered applications.",
+		title: "Communications Security Best Practices",
+		excerpt: "Essential security considerations when building and deploying encrypted messaging applications.",
 		date: "2024-12-20",
 		readTime: "10 min read",
 		category: "Security",
@@ -49,8 +49,8 @@ const blogPosts = [
 		image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=400&fit=crop"
 	},
 	{
-		title: "Prompt Engineering 101",
-		excerpt: "Master the art of prompt engineering to get better results from AI language models.",
+		title: "Protocol Selection 101",
+		excerpt: "Master the art of choosing the right communications protocol to get better performance and security.",
 		date: "2024-12-15",
 		readTime: "5 min read",
 		category: "Tutorial",
@@ -62,7 +62,7 @@ const blogPosts = [
 const categories = ["All", "Tutorial", "Industry", "Engineering", "Research", "Security"];
 ---
 
-<Layout title="Blog - GenAI">
+<Layout title="Blog - Paradigm Solutions" description="Insights, tutorials, and updates from the Paradigm Solutions team">
 	<section class="py-20 md:py-32">
 		<div class="container mx-auto px-4">
 			<div class="text-center space-y-4 mb-16">
@@ -73,7 +73,7 @@ const categories = ["All", "Tutorial", "Industry", "Engineering", "Research", "S
 					</span>
 				</h1>
 				<p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-					Insights, tutorials, and updates from the GenAI team
+					Insights, tutorials, and updates from the Paradigm Solutions team
 				</p>
 			</div>
 
@@ -101,7 +101,7 @@ const categories = ["All", "Tutorial", "Industry", "Engineering", "Research", "S
 							<div class="p-6">
 								<div class="flex items-center gap-4 text-sm text-muted-foreground mb-3">
 									<span class="inline-flex items-center gap-1">
-										<Calendar class="h-4 w-4" />
+										<Calendar className="h-4 w-4" />
 										{new Date(post.date).toLocaleDateString('en-US', {
 											month: 'short',
 											day: 'numeric',
@@ -109,7 +109,7 @@ const categories = ["All", "Tutorial", "Industry", "Engineering", "Research", "S
 										})}
 									</span>
 									<span class="inline-flex items-center gap-1">
-										<Clock class="h-4 w-4" />
+										<Clock className="h-4 w-4" />
 										{post.readTime}
 									</span>
 								</div>
@@ -124,7 +124,7 @@ const categories = ["All", "Tutorial", "Industry", "Engineering", "Research", "S
 								</p>
 								<span class="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
 									Read more
-									<ArrowRight class="h-4 w-4" />
+									<ArrowRight className="h-4 w-4" />
 								</span>
 							</div>
 						</a>
@@ -136,7 +136,7 @@ const categories = ["All", "Tutorial", "Industry", "Engineering", "Research", "S
 			<div class="mt-20 p-8 md:p-12 rounded-2xl border bg-gradient-to-br from-purple-500/10 to-pink-500/10 text-center">
 				<h2 class="text-2xl md:text-3xl font-bold mb-4">Never miss an update</h2>
 				<p class="text-muted-foreground mb-6 max-w-xl mx-auto">
-					Subscribe to our newsletter for the latest AI insights, tutorials, and product updates.
+					Subscribe to our newsletter for the latest security insights, tutorials, and product updates.
 				</p>
 				<div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
 					<input

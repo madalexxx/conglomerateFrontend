@@ -1,0 +1,57 @@
+---
+import { scanDocs, buildSlugLookupFromDocs } from '@/lib/doc-scanner';
+import type { DocEntry } from '@/lib/doc-scanner';
+import DocsLayout from '@/layouts/docs.astro';
+import { promises as fs } from 'fs';
+import { marked } from 'marked';
+import { convertWikilinks, processTOC, toSlug } from '@/lib/markdown';
+
+export async function getStaticPaths() {
+  const { docs } = await scanDocs();
+
+  return docs.map(doc => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+
+interface Props {
+  doc: DocEntry;
+}
+
+const { doc } = Astro.props;
+
+const { docs, tree } = await scanDocs();
+
+// Build slug lookup for wikilink resolution
+const slugLookup = buildSlugLookupFromDocs(docs);
+
+// Read markdown content
+const fileContent = await fs.readFile(doc.fullPath, 'utf-8');
+
+// Strip frontmatter
+const contentWithoutFrontmatter = fileContent.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+
+// Process TOC code blocks
+const contentWithTOC = processTOC(contentWithoutFrontmatter);
+
+// Convert wikilinks to standard markdown links
+const contentWithLinks = convertWikilinks(contentWithTOC, slugLookup);
+
+// Render to HTML
+let htmlContent = await marked(contentWithLinks);
+
+// Post-process: Add IDs to headings that don't have them
+// This ensures anchor links work properly
+htmlContent = htmlContent.replace(/<h([1-6])>([^<]+)<\/h\1>/g, (match, level, text) => {
+  const id = toSlug(text);
+  return `<h${level} id="${id}">${text}</h${level}>`;
+});
+
+---
+
+<DocsLayout title={doc.subtitle || doc.title} currentSlug={doc.slug} tree={tree}>
+  <div class="prose dark:prose-invert max-w-none">
+    <Fragment set:html={htmlContent} />
+  </div>
+</DocsLayout>

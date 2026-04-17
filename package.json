@@ -1,12 +1,12 @@
 {
-  "name": "astro-genai-startup-theme",
+  "name": "paradigm-solutions-site",
   "type": "module",
   "version": "1.0.0",
-  "description": "A modern, free Astro theme template for GenAI startups with dark/light mode toggle",
+  "description": "Paradigm Solutions is a fictional company that provides innovative solutions for businesses. Our website showcases our products, services, and success stories. We are committed to delivering exceptional value to our clients and helping them achieve their goals.",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --host",
     "astro": "astro"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.468.0",
+    "marked": "^17.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.5",

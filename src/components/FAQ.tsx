@@ -8,34 +8,34 @@ import {
 
 const faqs = [
   {
-    question: "What AI models do you support?",
+    question: "What communications protocols do you support?",
     answer:
-      "We support a wide range of state-of-the-art AI models including GPT-4, Claude, Llama, and custom fine-tuned models. Our platform is model-agnostic and continuously updated with the latest releases.",
+      "We support end-to-end encrypted messaging, distributed relay protocols, and custom implementations. Our infrastructure is protocol-agnostic and continuously updated with the latest cryptographic standards.",
   },
   {
     question: "How is pricing calculated?",
     answer:
-      "Pricing is based on the number of API requests and the complexity of the AI models used. We offer transparent, pay-as-you-go pricing with no hidden fees. You can upgrade or downgrade your plan at any time.",
+      "Pricing is based on message volume and network infrastructure usage. We offer transparent, pay-as-you-go pricing with no hidden fees. You can upgrade or downgrade your plan at any time.",
   },
   {
     question: "Is my data secure?",
     answer:
-      "Absolutely. We use bank-level encryption (AES-256) for data at rest and in transit. We're SOC 2 Type II certified and compliant with GDPR, HIPAA, and other major data protection regulations. Your data is never used to train models without explicit consent.",
+      "Yes. We use quantum-resistant encryption (AES-256 and beyond) for all communications. We're SOC 2 Type II certified and compliant with GDPR and other major data protection regulations. Paradigm Solutions cannot access your message content.",
   },
   {
     question: "Can I use this for commercial projects?",
     answer:
-      "Yes! All our plans, including the free tier, can be used for commercial projects. We encourage you to build and ship products using our platform. Enterprise plans offer additional features for large-scale deployments.",
+      "Absolutely. All our plans, including the free tier, can be used for commercial deployments. We encourage organizations of all sizes to build secure communications into their products. Enterprise plans offer custom terms and SLAs.",
   },
   {
     question: "What kind of support do you offer?",
     answer:
-      "Free plans include community support and comprehensive documentation. Pro plans get priority email support with 24-hour response times. Enterprise customers receive 24/7 dedicated support with a dedicated account manager and custom SLAs.",
+      "Free plans include documentation and community support. Pro plans get priority technical support with 24-hour response times. Enterprise customers receive 24/7 dedicated support with a dedicated account manager and custom SLAs.",
   },
   {
     question: "Do you offer a free trial?",
     answer:
-      "Yes! We offer a generous free tier that includes 1,000 API requests per month. Pro and Enterprise plans come with a 14-day free trial with no credit card required. You can cancel anytime.",
+      "Yes! We offer a generous free tier that includes 100,000 messages per month. Pro and Enterprise plans come with a 14-day free trial with no credit card required. You can cancel anytime.",
   },
 ];
 

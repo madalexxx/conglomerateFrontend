@@ -5,7 +5,7 @@ import { Home, Search, ArrowLeft } from 'lucide-react';
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title="Page Not Found - GenAI">
+<Layout title="Page Not Found - Paradigm Solutions">
 	<section class="py-20 md:py-32 min-h-[60vh] flex items-center">
 		<div class="container mx-auto px-4">
 			<div class="max-w-2xl mx-auto text-center">
@@ -18,7 +18,7 @@ const base = import.meta.env.BASE_URL;
 						<div class="absolute inset-0 flex items-center justify-center">
 							<div class="relative">
 								<div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-								<Search class="h-24 w-24 md:h-32 md:w-32 text-purple-600 dark:text-purple-400 relative" />
+								<Search className="h-24 w-24 md:h-32 md:w-32 text-purple-600 dark:text-purple-400 relative" />
 							</div>
 						</div>
 					</div>
@@ -38,14 +38,14 @@ const base = import.meta.env.BASE_URL;
 						href={base}
 						class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
 					>
-						<Home class="h-4 w-4" />
+						<Home className="h-4 w-4" />
 						Back to Home
 					</a>
 					<button
 						onclick="history.back()"
 						class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md border bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
 					>
-						<ArrowLeft class="h-4 w-4" />
+						<ArrowLeft className="h-4 w-4" />
 						Go Back
 					</button>
 				</div>
